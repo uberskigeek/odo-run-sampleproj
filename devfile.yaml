@@ -1,0 +1,48 @@
+metadata:
+  name: java-openLiberty
+projects:
+  - name: user-app
+    source:
+      location: 'https://github.com/ajm01/fullODOTestApp.git'
+      type: git
+      branch: master
+components:
+  - id: redhat/java/latest
+    memoryLimit: 1512Mi
+    type: chePlugin
+  - mountSources: true
+    endpoints:
+      - name: 9080/tcp
+        port: 9080
+#    command:
+#      - tail
+#    args:
+#      - '-f'
+#      - /dev/null
+    memoryLimit: 768Mi
+    type: dockerimage
+#    volumes:
+#      - name: m2
+#        containerPath: /home/user/.m2
+    alias: appsodyrun
+    image: 'ajymau/openliberty-odo-appsodyrun:latest'
+    env:
+      - value: TEST2
+        name: MODE2
+      - value: myval2
+        name: myprop2
+apiVersion: 1.0.0
+commands:
+  - name: devBuild
+    actions:
+      - workdir: /projects/user-app
+        type: exec
+        command: /project/run-stack.sh odorun
+        component: appsodyrun
+  - name: devRun
+    actions:
+      - workdir: /projects/user-app
+        type: exec
+        command: echo "devBuild built the app and started it in liberty:devmode...do nothing in the run phase" 
+        component: appsodyrun
+
