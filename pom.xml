@@ -5,13 +5,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- <parent>
-
+    <parent>
         <groupId>dev.appsody</groupId>
         <artifactId>java-openliberty</artifactId>
         <version>[0.1, 0.2)</version>
         <relativePath/>
-    </parent> -->
+    </parent>
 
     <groupId>dev.appsody.starter.java-openliberty</groupId>
     <artifactId>starter-app</artifactId>
