@@ -1,5 +1,5 @@
 metadata:
-  name: java-openLiberty
+  name: java-openliberty
 projects:
   - name: user-app
     source:
@@ -37,12 +37,14 @@ commands:
     actions:
       - workdir: /projects/user-app
         type: exec
-        command: /project/run-stack.sh odorun
+        command: /project/run-stack.sh odobld
         component: appsodyrun
   - name: devRun
     actions:
       - workdir: /projects/user-app
         type: exec
-        command: echo "devBuild built the app and started it in liberty:devmode...do nothing in the run phase" 
+        command: /project/run-stack.sh odorun
         component: appsodyrun
+    attributes:
+        restart: "false"
 
