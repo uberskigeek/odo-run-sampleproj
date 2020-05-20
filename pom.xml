@@ -4,13 +4,24 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-
+<!-- not using the parent pom for now
     <parent>
         <groupId>dev.appsody</groupId>
         <artifactId>java-openliberty</artifactId>
         <version>[0.1, 0.3)</version>
         <relativePath/>
     </parent>
+-->
+    <properties>
+	<wlp.install.dir>/opt/ol/wlp</wlp.install.dir>
+        <version.maven-war-plugin>3.2.2</version.maven-war-plugin>
+        <version.dockerfile-maven-plugin>1.4.10</version.dockerfile-maven-plugin>
+        <version.maven-surefire-plugin>3.0.0-M1</version.maven-surefire-plugin>
+        <version.maven-failsafe-plugin>3.0.0-M1</version.maven-failsafe-plugin>
+        <http.port>9080</http.port>
+        <https.port>9443</https.port>
+        <version.liberty-maven-plugin>3.2</version.liberty-maven-plugin>
+    </properties>
 
     <groupId>dev.appsody.starter.java-openliberty</groupId>
     <artifactId>starter-app</artifactId>
@@ -94,14 +105,16 @@
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
+                <version>${version.liberty-maven-plugin}</version>
                 <configuration>
                     <stripVersion>true</stripVersion>
-                    <serverStartTimeout>120</serverStartTimeout>
+                    <serverStartTimeout>360</serverStartTimeout>
                     <bootstrapProperties>
                         <default.http.port>${http.port}</default.http.port>
                         <default.https.port>${https.port}</default.https.port>
                         <app.context.root>${app.name}</app.context.root>
                     </bootstrapProperties>
+                    <installDirectory>/opt/ol/wlp</installDirectory>
                 </configuration>
             </plugin>
             <!-- Plugin to run unit tests -->
